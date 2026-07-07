@@ -1,34 +1,38 @@
 class Solution {
 public:
-    void dfs(int i,int j,vector<vector<char>>& board){
-        board[i][j]='2';
-        vector<pair<int,int>>dir={{1,0},{-1,0},{0,1},{0,-1}};
-        for(auto [x,y]:dir){
-            if(x+i>=0&&x+i<board.size()&&y+j>=0&&y+j<board[0].size()&&board[x+i][y+j]=='1'){
-                
-                dfs(x+i,y+j,board);
-            }   
-        } 
+    vector<pair<int,int>> dir = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+
+    void dfs(int i, int j, vector<vector<char>>& grid) {
+        grid[i][j] = '2';
+
+        for (auto [dx, dy] : dir) {
+            int ni = i + dx;
+            int nj = j + dy;
+
+            if (ni >= 0 && ni < grid.size() &&
+                nj >= 0 && nj < grid[0].size() &&
+                grid[ni][nj] == '1') {
+                dfs(ni, nj, grid);
+            }
+        }
     }
 
     int numIslands(vector<vector<char>>& grid) {
-        int m=grid.size();
-        int n=grid[0].size();
-        
-        int cnt=0;
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(grid[i][j]=='1'){
-                    
-                    dfs(i,j,grid);
-                    cnt++;
-                }
+        if (grid.empty()) return 0;
 
+        int m = grid.size();
+        int n = grid[0].size();
+        int islands = 0;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '1') {
+                    islands++;
+                    dfs(i, j, grid);
+                }
             }
-            
-            
         }
-        
-        return cnt;
+
+        return islands;
     }
 };
