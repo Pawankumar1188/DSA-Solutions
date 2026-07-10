@@ -20,7 +20,7 @@ public:
                 if(ni<0||ni>=n||nj<0||nj>=n||grid[ni][nj]==1){
                     continue;
                 }
-                if(grid[ni][nj]==0&&dist[ni][nj]>1+dist[i][j]){
+                if(dist[ni][nj]>1+dist[i][j]){
                     dist[ni][nj]=1+dist[i][j];
                     q.push({ni,nj});
                     cout<<ni<<" "<<nj<<endl;
