@@ -12,7 +12,9 @@ public:
         while(!pq.empty()){
             auto [effort,pos]=pq.top();
             auto [i, j] = pos;
-            
+            if(i==n-1&&j==m-1){
+                return effort;
+            }
             pq.pop();
             for(auto [i_,j_]:dir){
                 int ni=i+i_;
