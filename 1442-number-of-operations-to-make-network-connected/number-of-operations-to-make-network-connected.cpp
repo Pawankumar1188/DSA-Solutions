@@ -3,10 +3,10 @@ class DSU{
     public:
     DSU(int n){
         parent.resize(n);
-        size.resize(n);
+        size.resize(n,1);
         for(int i=0;i<n;i++){
             parent[i]=i;
-            size[i]=1;
+            
         }
     }
     int ultimateP(int u){
@@ -15,10 +15,10 @@ class DSU{
         }
         return parent[u]=ultimateP(parent[u]);
     }
-    void unionbysize(int u,int v){
+    bool unionbysize(int u,int v){
         int ultpu=ultimateP(u);
         int ultpv=ultimateP(v);
-        if(ultpu == ultpv) return;
+        if(ultpu == ultpv) return false;
         if(size[ultpu]<size[ultpv]){
             parent[ultpu]=ultpv;
             size[ultpv]+=size[ultpu];
@@ -27,14 +27,9 @@ class DSU{
             parent[ultpv]=ultpu;
             size[ultpu]+=size[ultpv];
         }
+        return true;
     }
-    int sz(){
-        set<int>s;
-        for(int i=0;i<parent.size();i++){
-            s.insert(ultimateP(i));
-        }
-        return s.size();
-    }
+    
 };
 class Solution {
 public:
@@ -43,11 +38,14 @@ public:
             return -1;
         }
 
+        int component=n;
         DSU ds(n);
-        for(int i=0;i<connections.size();i++){
-            ds.unionbysize(connections[i][0],connections[i][1]);
-            cout<<i<<endl;
+        for (auto &edge : connections) {
+            if (ds.unionbysize(edge[0], edge[1])) {
+                component--;
+            }
         }
-        return ds.sz()-1;
+
+        return component-1;
     }
 };
