@@ -12,10 +12,7 @@ public:
             if(vis[s[i]]!=0){
                 continue;
             }
-            if(stk.empty()){
-                stk.push(s[i]);
-                vis[s[i]]=2;
-            }
+            
             while(!stk.empty() && stk.top()>s[i] && index[stk.top()]>i){
                 vis[stk.top()]=0;
                 stk.pop();
