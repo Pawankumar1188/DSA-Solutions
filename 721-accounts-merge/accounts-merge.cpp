@@ -54,12 +54,12 @@ public:
         }
         for(int i=0;i<n;i++){
             if(dummy[i].size()==0) continue;
-            int realind=dsu.findparent(i);
-            vector<string>temp;
-            temp.push_back(accounts[realind][0]);
             
-            sort(dummy[realind].begin(),dummy[realind].end());
-            for(auto e:dummy[realind]){
+            vector<string>temp;
+            temp.push_back(accounts[i][0]);
+            
+            sort(dummy[i].begin(),dummy[i].end());
+            for(auto e:dummy[i]){
                 temp.push_back(e);
             }
             ans.push_back(temp);
