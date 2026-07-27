@@ -38,7 +38,7 @@ public:
         
         int n=grid.size();
         dsu ds(n*n);
-        vector<pair<int,int>>dir={{1,0},{-1,0},{0,1},{0,-1}};
+        vector<pair<int,int>>dir={{1,0},{0,1}};
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 if(grid[i][j]==0){
@@ -52,6 +52,7 @@ public:
 
             }
         }
+        dir={{1,0},{-1,0},{0,1},{0,-1}};
         bool foundzero=false;
         int ans=0;
         for(int i=0;i<n;i++){
