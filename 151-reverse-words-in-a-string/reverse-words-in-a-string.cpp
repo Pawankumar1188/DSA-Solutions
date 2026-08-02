@@ -15,7 +15,7 @@ public:
         int l=j;
         int r=j;
         while(l>=i){
-            if(s[l]==' '&&r-l<1){
+            if(s[l]==' '&&r==l){
                 l--;
                 r--;
             }
